@@ -7,8 +7,8 @@ resource "helm_release" "csi_secrets_store" {
 }
 
 resource "helm_release" "ascp" {
-    name        = "csi-secrets-store-provider-aws"
-    chart       = "csi-secrets-store-provider-aws"
+    name        = "secrets-store-csi-driver-provider-aws"
+    chart       = "secrets-store-csi-driver-provider-aws"
     repository  = "https://aws.github.io/secrets-store-csi-driver-provider-aws"
     namespace   = "kube-system"
 }
