@@ -1,16 +1,16 @@
-# cloud-platform-terraform-_template_
+# cloud-platform-terraform-secrets-store-csi
 
-_note: Please remove all comments in italics and fill where required>_
+This Terraform module enables Kubernetes Secrets Store CSI Driver & AWS Secrets and Configuration Provider (ASCP) for managing 
+AWS Secrets Manager secrets in EKS workloads
+
+https://github.com/aws/secrets-store-csi-driver-provider-aws
 
 _Please change the urls in the release badge below_
 [![Releases](https://img.shields.io/github/release/ministryofjustice/cloud-platform-terraform-template/all.svg?style=flat-square)](https://github.com/ministryofjustice/cloud-platform-terraform-template/releases)
 
-_Short describion of the module_
-_This Terraform module ......_
 
 ## Usage
 
-_Describe how to use the module_
 See the [examples/](examples/) folder.
 
 <!--- BEGIN_TF_DOCS --->
@@ -63,4 +63,4 @@ Some of the inputs are tags. All infrastructure resources need to be tagged acco
 
 ## Reading Material
 
-_add link to external source_
+https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_csi_driver.html
