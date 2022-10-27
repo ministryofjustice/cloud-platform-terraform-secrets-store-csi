@@ -1,0 +1,47 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-param
+  labels:
+    app: nginx-param
+spec:
+  selector:
+    app: nginx-param
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-param
+  labels:
+    app: nginx-param
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-param
+  template:
+    metadata:
+      labels:
+        app: nginx-param
+    spec:
+      serviceAccountName: cloud-platform-bad8c17519c797a9
+      volumes:
+      - name: parameter-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "test-aws-parameter-store"
+      containers:
+      - name: nginx-param
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: parameter-store-inline
+          mountPath: "/mnt/parameter-store"
+          readOnly: true
