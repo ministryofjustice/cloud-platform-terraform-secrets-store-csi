@@ -28,7 +28,7 @@ spec:
       labels:
         app: nginx-param
     spec:
-      serviceAccountName: cloud-platform-bad8c17519c797a9
+      serviceAccountName: 
       volumes:
       - name: parameter-store-inline
         csi:
