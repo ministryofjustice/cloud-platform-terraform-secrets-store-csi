@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-secrets
+  name: nginx-deployment
   labels:
-    app: nginx-secrets
+    app: nginx
 spec:
   selector:
-    app: nginx-secrets
+    app: nginx
   ports:
     - protocol: TCP
       port: 80
@@ -15,29 +15,29 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-secrets
+  name: nginx-deployment
   labels:
-    app: nginx-secrets
+    app: nginx
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-secrets
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-secrets
+        app: nginx
     spec:
-      serviceAccountName: 
+      serviceAccountName: cloud-platform-xxxxxxxxx
       volumes:
       - name: secrets-store-inline
         csi:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: "test-aws-secrets"
+            secretProviderClass: "nginx-deployment-aws-secrets"
       containers:
-      - name: nginx-secrets
+      - name: nginx-deployment
         image: nginx
         ports:
         - containerPort: 80
